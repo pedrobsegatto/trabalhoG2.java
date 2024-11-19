@@ -24,52 +24,42 @@ public class RegisterEntity {
 	
 	@Column(columnDefinition = "Decimal(11,8)", nullable = false)
 	private double latitude;
-	
 	@Column(columnDefinition = "Decimal(11,8)", nullable = false)
 	private double longitude;
-	
 	@Column(length = 500)
 	private String description;
-
+	
 	public UUID getId() {
 		return id;
 	}
-
 	public void setId(UUID id) {
 		this.id = id;
 	}
-
 	public UserEntity getUser() {
 		return user;
 	}
-
 	public void setUser(UserEntity user) {
 		this.user = user;
 	}
-
 	public double getLatitude() {
 		return latitude;
 	}
-
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
-
 	public double getLongitude() {
 		return longitude;
 	}
-
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
-
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
 	
 	
 }

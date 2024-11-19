@@ -19,11 +19,13 @@ public class AuthController {
 	
 	// A classe AuthController possui uma dependência de "UserService"
 	private final UserService service;
-	// Injeção de dependência via método construtor
+		
 	public AuthController(UserService service) {
 		super();
 		this.service = service;
 	}
+
+
 
 	@PostMapping("/signup")
 	public ResponseEntity<UserEntity> createNewUser(
@@ -33,9 +35,9 @@ public class AuthController {
 		BeanUtils.copyProperties(signup, newUser);
 		newUser.setType(TypeUser.Common);
 		
-		// invocar método camada service
 		service.save(newUser);
 		
+		// TODO invocar método camada service
 		// TODO retornar entidade User
 		return ResponseEntity.ok(newUser);
 	}

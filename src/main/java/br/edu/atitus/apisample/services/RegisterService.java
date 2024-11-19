@@ -12,42 +12,36 @@ import br.edu.atitus.apisample.repositories.RegisterRepository;
 public class RegisterService {
 
 	private final RegisterRepository repository;
-	
-	public RegisterService(RegisterRepository repository) {	
+
+	public RegisterService(RegisterRepository repository) {
 		super();
 		this.repository = repository;
 	}
-
-	//método save
+	
 	public RegisterEntity save(RegisterEntity newRegister) throws Exception {
-		// validação de regra de negócio
 		if (newRegister.getUser() == null || newRegister.getUser().getId() == null)
-			throw new Exception("Uusário não informado");
+			throw new Exception("Usuário não informado");
 		if (newRegister.getLatitude() < -90 || newRegister.getLatitude() > 90)
-			throw new Exception("Latitude inválida");
+			throw new Exception("Latitude Inválida");
 		if (newRegister.getLongitude() < -180 || newRegister.getLongitude() > 180)
-			throw new Exception("Longitude inválida");
-		//Invocar método save da camada repository
+			throw new Exception("Longitude Inválida");
+		
 		repository.save(newRegister);
 		
 		return newRegister;
-	
 	}
 	
-	//método findAll
 	public List<RegisterEntity> findAll() throws Exception {
 		List<RegisterEntity> registers = repository.findAll();
 		return registers;
 	}
 	
-	//método findById
 	public RegisterEntity findById(UUID id) throws Exception {
-		RegisterEntity register = repository.findById(id)
-				.orElseThrow(() -> new Exception("Registro não encontrado com este Id"));
-		return register;				
+		RegisterEntity register = repository.findById(id).orElseThrow(() -> new Exception("Registro não encontrado com este ID"));
+		return register;
 	}
-	//método deteleById
-	public void deleteById(UUID id) throws Exception{
+	
+	public void deleteById(UUID id) throws Exception {
 		this.findById(id);
 		repository.deleteById(id);
 	}
